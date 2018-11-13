@@ -8,6 +8,7 @@ const updateCredit = require("./src/controllers/updateCredit");
 const getCredit = require("./src/controllers/getCredit");
 
 const app = express();
+const port = 9017
 
 
 const validator = new Validator({ allErrors: true });
@@ -45,6 +46,6 @@ app.use(function(err, req, res, next) {
   }
 });
 
-app.listen(9017, function() {
-  console.log("App credit started on PORT 9017");
+app.listen(port, function() {
+  console.log(`App credit started on PORT ${port}`);
 });

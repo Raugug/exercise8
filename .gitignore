@@ -1,5 +1,5 @@
-/node_modules
-/data
-/data2
-/message/node_modules
-/credit/node_modules
+node_modules
+data
+.env
+message/node_modules
+credit/node_modules

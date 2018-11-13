@@ -1,7 +1,7 @@
 const Bull = require('bull');
-const creditQueue = new Bull('credit-queue');
-const messageQueue = new Bull('message-queue');
-const rollbackQueue = new Bull('rollback-queue');
+const creditQueue = new Bull('credit-queue', 'redis://redis:6379');
+const messageQueue = new Bull('message-queue', 'redis://redis:6379');
+const rollbackQueue = new Bull('rollback-queue', 'redis://redis:6379');
 const updateCredit = require('../clients/updateCredit');
 
 const getCredit = require('../clients/getCredit');
@@ -10,7 +10,6 @@ creditQueue.process((job, done) => {
     const { cost } = job.data.location;
     getCredit()
         .then(credit => {
-            console.log("CREDIT", credit)
             let { amount } = credit[0];
             if (amount > 0) {
                 amount -= cost;
